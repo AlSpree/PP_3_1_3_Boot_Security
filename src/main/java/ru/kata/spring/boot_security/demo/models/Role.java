@@ -6,15 +6,14 @@ import org.springframework.security.core.GrantedAuthority;
 import javax.persistence.*;
 
 @Entity
-@Table(name="roles_bs")
+@Table(name="role_bs")
 public class Role implements GrantedAuthority {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
     private int id;
 
-    @Column(name="role")
+
     private String role;
 
     @ManyToOne(fetch = FetchType.LAZY)

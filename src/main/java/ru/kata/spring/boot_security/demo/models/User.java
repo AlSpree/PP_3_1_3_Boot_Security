@@ -8,15 +8,13 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Table(name="users_bs")
+@Table(name="user_bs")
 public class User implements UserDetails {
     @Id
-    @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
@@ -33,7 +31,7 @@ public class User implements UserDetails {
 //    @Min(value = 499, message = "Зарплата должна быть не менее 500")
 //    private int salary;
 
-    @Column(name="password")
+
     @NotBlank(message = "пароль не должно быть пустым")
     private String password;
 
@@ -45,6 +43,17 @@ public class User implements UserDetails {
 
     public User(String name) {
         this.name = name;
+    }
+
+    public User(String name, String password) {
+        this.name = name;
+        this.password = password;
+    }
+
+    public User(String name, String password, List<Role> roles) {
+        this.name = name;
+        this.password = password;
+        this.roles = roles;
     }
 
     public int getId() {
@@ -75,9 +84,6 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
-    public void setRolesList(List<Role> roles) {
-        this.roles = roles;
-    }
 
     @Override
     public String toString() {

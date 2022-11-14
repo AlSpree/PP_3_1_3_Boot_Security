@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserDetailsService {
 
     public User findUser(int id) {
         Optional<User> foundUser = userRepository.findById(id);
-        foundUser.get().getRoles().forEach(System.out::println);
+//        foundUser.get().getRoles().forEach(System.out::println);
         return foundUser.orElse(null);
     }
 
@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserDetailsService {
             roles.add(newRole);
         }
 
-        user.setRolesList(roles);
+        user.setRoles(roles);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         userRepository.save(user);
